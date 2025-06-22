@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Lesson | LearnAI</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="spinner"></div>
+        <p>Loading Interactive Content...</p>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Learn<span>AI</span></a>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html#lessons">Lessons</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="lesson-container">
+        <aside class="lesson-sidebar" id="lessonSidebar">
+            <div class="sidebar-header">
+                <h2>Lesson Content</h2>
+                <button class="sidebar-close" id="sidebarClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <div class="lesson-progress">
+                    <div class="progress-bar">
+                        <div class="progress" id="lessonProgress"></div>
+                    </div>
+                    <span id="progressText">0% Complete</span>
+                </div>
+                <nav class="lesson-nav">
+                    <ul id="lessonNav">
+                        <!-- Lesson navigation will be populated by JavaScript -->
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="lesson-main">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+                <span>Table of Contents</span>
+            </button>
+
+            <article class="lesson-content">
+                <header class="lesson-header">
+                    <div class="lesson-breadcrumb">
+                        <a href="index.html">Home</a> / 
+                        <a href="index.html#lessons">Lessons</a> / 
+                        <span>Interactive Lesson</span>
+                    </div>
+                    <h1>Introduction to Interactive Learning</h1>
+                    <div class="lesson-meta">
+                        <span class="lesson-duration"><i class="far fa-clock"></i> 15 min</span>
+                        <span class="lesson-level">Beginner</span>
+                    </div>
+                </header>
+
+                <div class="lesson-steps">
+                    <!-- Step 1: Introduction -->
+                    <section class="lesson-step active" id="step-1" data-step="1">
+                        <h2>Welcome to Interactive Learning</h2>
+                        <p>In this lesson, you'll explore interactive elements that make learning engaging and effective. Let's get started!</p>
+                        
+                        <div class="interactive-demo">
+                            <h3>Interactive Decision Helper</h3>
+                            <p>This tool will help you understand when to use different approaches in your projects. Select the characteristics that apply to your situation:</p>
+                            
+                            <div class="decision-helper">
+                                <div class="space-y-3 mb-4">
+                                    <label class="decision-option">
+                                        <input type="checkbox" name="task-char" value="agent">
+                                        <span class="decision-custom"></span>
+                                        <span class="decision-label">Steps are unknown and require adaptation</span>
+                                    </label>
+                                    <label class="decision-option">
+                                        <input type="checkbox" name="task-char" value="script">
+                                        <span class="decision-custom"></span>
+                                        <span class="decision-label">Follows a predictable, fixed sequence</span>
+                                    </label>
+                                    <label class="decision-option">
+                                        <input type="checkbox" name="task-char" value="agent">
+                                        <span class="decision-custom"></span>
+                                        <span class="decision-label">Requires model-driven decision-making</span>
+                                    </label>
+                                    <label class="decision-option">
+                                        <input type="checkbox" name="task-char" value="script">
+                                        <span class="decision-custom"></span>
+                                        <span class="decision-label">Can be solved with deterministic, rules-based logic</span>
+                                    </label>
+                                </div>
+                                <div id="decision-result" class="decision-result">
+                                    Select characteristics to see a recommendation.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lesson-actions">
+                            <button class="btn btn-primary next-step" data-next="2">Next: Interactive Elements <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </section>
+
+                    <!-- Step 2: Word Cloud -->
+                    <section class="lesson-step" id="step-2" data-step="2">
+                        <h2>Key Concepts</h2>
+                        <p>Explore these important terms to better understand the material. Click or tap on any term to learn more.</p>
+                        
+                        <div class="word-cloud-container">
+                            <div id="wordCloud" class="word-cloud">
+                                <!-- Words will be added by JavaScript -->
+                            </div>
+                            <div id="wordDefinition" class="word-definition">
+                                <div class="word-definition-content">
+                                    <h3 id="definitionTerm">Select a term</h3>
+                                    <p id="definitionText">Click on any term above to see its definition and related information.</p>
+                                    <button id="closeDefinition" class="btn btn-sm btn-ghost mt-2">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lesson-actions">
+                            <button class="btn btn-outline prev-step" data-prev="1"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button class="btn btn-primary next-step" data-next="3">Next: Code Example <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </section>
+
+                    <!-- Step 3: Code Example -->
+                    <section class="lesson-step" id="step-3" data-step="3">
+                        <h2>Interactive Code Example</h2>
+                        <p>Try out this interactive code example. Edit the code and see the results in real-time.</p>
+                        
+                        <div class="code-editor">
+                            <div class="code-tabs">
+                                <button class="code-tab active" data-tab="html">HTML</button>
+                                <button class="code-tab" data-tab="css">CSS</button>
+                                <button class="code-tab" data-tab="js">JavaScript</button>
+                                <button class="code-tab" data-tab="result">Result</button>
+                            </div>
+                            <div class="code-content">
+                                <div class="code-pane active" data-pane="html">
+                                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Hello World&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1 id="greeting"&gt;Hello, World!&lt;/h1&gt;
+        &lt;button id="changeText"&gt;Change Text&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                                </div>
+                                <div class="code-pane" data-pane="css">
+                                    <pre><code class="language-css">body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4338ca;
+}</code></pre>
+                                </div>
+                                <div class="code-pane" data-pane="js">
+                                    <pre><code class="language-javascript">document.addEventListener('DOMContentLoaded', () => {
+    const greeting = document.getElementById('greeting');
+    const changeBtn = document.getElementById('changeText');
+    let isChanged = false;
+    
+    changeBtn.addEventListener('click', () => {
+        if (isChanged) {
+            greeting.textContent = 'Hello, World!';
+            changeBtn.textContent = 'Change Text';
+        } else {
+            greeting.textContent = 'Text Changed!';
+            changeBtn.textContent = 'Revert';
+        }
+        isChanged = !isChanged;
+    });
+});</code></pre>
+                                </div>
+                                <div class="code-pane" data-pane="result">
+                                    <div class="code-result">
+                                        <div class="result-container">
+                                            <h1 id="resultGreeting">Hello, World!</h1>
+                                            <button id="resultChangeBtn">Change Text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="code-actions">
+                                <button class="btn btn-sm btn-ghost" id="copyCode">
+                                    <i class="far fa-copy"></i> Copy Code
+                                </button>
+                                <button class="btn btn-sm btn-ghost" id="runCode">
+                                    <i class="fas fa-play"></i> Run Code
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="lesson-actions">
+                            <button class="btn btn-outline prev-step" data-prev="2"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button class="btn btn-primary next-step" data-next="4">Next: Quiz <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </section>
+
+                    <!-- Step 4: Quiz -->
+                    <section class="lesson-step" id="step-4" data-step="4">
+                        <h2>Knowledge Check</h2>
+                        <p>Test your understanding with this interactive quiz. Select the best answer for each question.</p>
+                        
+                        <div class="quiz-container">
+                            <div class="quiz-question">
+                                <h3>1. What is the main advantage of interactive learning?</h3>
+                                <div class="quiz-options">
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q1" value="a">
+                                        <span class="option-custom"></span>
+                                        <span class="option-text">It's more engaging and helps with retention</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q1" value="b">
+                                        <span class="option-custom"></span>
+                                        <span class="option-text">It requires less effort than traditional learning</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q1" value="c">
+                                        <span class="option-custom"></span>
+                                        <span class="option-text">It's always faster than other methods</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-question">
+                                <h3>2. Which of these is an example of an interactive element?</h3>
+                                <div class="quiz-options">
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q2" value="a">
+                                        <span class="option-custom"></span>
+                                        <span class="option-text">A static image</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q2" value="b">
+                                        <span class="option-custom"></span>
+                                        <span class="option-text">A block of text</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q2" value="c">
+                                        <span class="option-custom"></span>
+                                        <span class="option-text">A clickable quiz with feedback</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="quiz-actions">
+                                <button class="btn btn-primary" id="checkQuiz">Check Answers</button>
+                                <div id="quizFeedback" class="quiz-feedback"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="lesson-actions">
+                            <button class="btn btn-outline prev-step" data-prev="3"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button class="btn btn-primary next-step" data-next="5">Next: Conclusion <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </section>
+
+                    <!-- Step 5: Conclusion -->
+                    <section class="lesson-step" id="step-5" data-step="5">
+                        <h2>Congratulations!</h2>
+                        <p>You've completed the interactive lesson. Here's a summary of what you've learned:</p>
+                        
+                        <div class="summary-cards">
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <h3>Key Concepts</h3>
+                                <ul>
+                                    <li>Interactive learning enhances engagement</li>
+                                    <li>Different types of interactive elements</li>
+                                    <li>How to apply these concepts in practice</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <h3>Next Steps</h3>
+                                <ul>
+                                    <li>Practice with more examples</li>
+                                    <li>Explore advanced interactive features</li>
+                                    <li>Apply these concepts to your own projects</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="completion-badge">
+                            <i class="fas fa-trophy"></i>
+                            <h3>Lesson Complete!</h3>
+                            <p>You've earned 10 XP</p>
+                        </div>
+                        
+                        <div class="lesson-actions">
+                            <button class="btn btn-outline prev-step" data-prev="4"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <a href="index.html" class="btn btn-primary">Back to Lessons <i class="fas fa-home"></i></a>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">Learn<span>AI</span></a>
+                    <p>Interactive learning for the modern web.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#lessons">Lessons</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LearnAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+    <script src="js/main.js" type="module"></script>
+    <script src="js/lesson.js" type="module"></script>
+</body>
+</html>
