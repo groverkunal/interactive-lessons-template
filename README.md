@@ -1,57 +1,105 @@
-# Interactive Lessons
+<div align="center">
+  <h1>✨ Interactive Lessons Template</h1>
+  <p>A lightweight, responsive, and interactive lesson template built with vanilla HTML, CSS, and JavaScript, enhanced with GSAP animations.</p>
+  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![GitHub stars](https://img.shields.io/github/stars/groverkunal/interactive-lessons-template?style=social)](https://github.com/groverkunal/interactive-lessons-template/stargazers)
+  [![GitHub forks](https://img.shields.io/github/forks/groverkunal/interactive-lessons-template?style=social)](https://github.com/groverkunal/interactive-lessons-template/network/members)
+</div>
 
-A lightweight, responsive, and interactive lesson template built with vanilla HTML, CSS, and JavaScript, enhanced with GSAP animations. Deploy effortlessly to Cloudflare Pages with just a few clicks.
+## 🚀 Features
 
-## Features
-
-- 🎨 **Responsive Design**: Works on all device sizes
-- 🌓 **Dark/Light Mode**: Built-in theme switching
+- 🎨 **Responsive Design**: Looks great on all devices from mobile to desktop
+- 🌓 **Dark/Light Mode**: Built-in theme switching with smooth transitions
 - 🎯 **Interactive Components**:
-  - Decision Helper
-  - Interactive Word Cloud
+  - Decision Helper for guided choices
+  - Interactive Word Cloud for visual learning
   - Code Editor with Syntax Highlighting
-  - Interactive Quiz
+  - Engaging Quiz System
 - 🚀 **Performance Optimized**: Fast loading with minimal dependencies
-- 🛠 **Easy to Customize**: Well-documented and modular code
+- 🛠 **Developer Friendly**: Well-documented and modular code structure
+- 🎨 **Customizable**: Easy to style and extend with your own content
+- 🔄 **GSAP Animations**: Smooth, performant animations for better engagement
 
-## 🚀 Quick Start
 
-1. **Preview Locally**
-   ```bash
-   # Install dependencies
-   npm install
-   
-   # Start local server
-   npm start
-   ```
-   Open http://localhost:8000 in your browser
 
-2. **Deploy to Cloudflare Pages**
-   - See our [Deployment Guide](./DEPLOYMENT-GUIDE.md) for step-by-step instructions
-   - Takes less than 5 minutes to go live!
+## 🛠 Installation
 
 ### Prerequisites
 
+- [Node.js](https://nodejs.org/) (v14+ recommended)
+- [Git](https://git-scm.com/) (for version control)
 - Modern web browser (Chrome, Firefox, Safari, Edge)
-- Node.js (v14+ recommended)
-- Git (for version control)
-- Cloudflare account (free)
+- [Cloudflare account](https://dash.cloudflare.com/sign-up) (for deployment)
 
-### Installation
+### Quick Start
 
-1. Clone or download this repository
-2. Serve the files using a local web server
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/groverkunal/interactive-lessons-template.git
+   cd interactive-lessons-template
+   ```
 
-```bash
-# Using Python's built-in server
-python3 -m http.server 8000
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Then open `http://localhost:8000` in your browser.
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
+   Your browser should automatically open to `http://localhost:8000`. If not, open it manually.
+
+## 🚀 Deployment
+
+### Option 1: Cloudflare Pages (Recommended)
+1. Fork this repository
+2. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com/)
+3. Go to Pages > Create a project
+4. Connect your GitHub account and select this repository
+5. In the build settings:
+   - Framework preset: None
+   - Build command: `npm run build`
+   - Build output directory: `dist`
+6. Click "Save and Deploy"
+
+### Option 2: Self-hosting
+1. Build the project:
+   ```bash
+   npm run build
+   ```
+2. Deploy the contents of the `dist` directory to your web server
 
 ## 🌐 Live Demo
 
-Check out the live demo: [https://interactive-lessons.pages.dev](https://interactive-lessons.pages.dev)
+Check out the live demo: [View Demo](https://interactive-lessons-template.pages.dev)
+
+## 🛠 Development
+
+### Project Structure
+
+```
+interactive-lessons/
+├── css/                  # Stylesheets
+│   ├── animations.css    # Animation keyframes
+│   ├── lesson.css        # Lesson-specific styles
+│   ├── reset.css         # CSS reset
+│   ├── style.css         # Main styles
+│   └── variables.css     # CSS variables and theming
+├── js/                   # JavaScript files
+│   ├── lesson.js         # Lesson logic
+│   └── main.js           # Main application logic
+├── index.html            # Main entry point
+├── lesson.html           # Example lesson page
+└── package.json          # Project configuration
+```
+
+### Available Scripts
+
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm run lint` - Lint source files
 
 ## 🔌 Integration Guide
 
@@ -90,14 +138,29 @@ Check out the live demo: [https://interactive-lessons.pages.dev](https://interac
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
 ```
 
-## Customization
+## 🎨 Customization
 
 ### Theming
 
-Customize colors by overriding CSS variables in your stylesheet:
+Easily customize the look and feel by overriding CSS variables in your stylesheet:
 
 ```css
 :root {
+  /* Light Theme */
+  --primary-color: #4a6fa5;
+  --secondary-color: #6c757d;
+  --background: #ffffff;
+  --text-color: #212529;
+  --card-bg: #f8f9fa;
+  --border-color: #dee2e6;
+
+  /* Dark Theme */
+  @media (prefers-color-scheme: dark) {
+    --background: #1a1a1a;
+    --text-color: #f8f9fa;
+    --card-bg: #2d2d2d;
+    --border-color: #444;
+  }
   --color-primary: #4f46e5;
   --color-primary-dark: #4338ca;
   --color-text: #1f2937;
