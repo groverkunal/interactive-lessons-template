@@ -15,12 +15,35 @@ let allTags = new Set();
 // Initialize the page
 async function init() {
     try {
+        // Show skeleton loaders while loading
+        showSkeletonLoaders(resourcesGrid, 6);
+        
+        // Add a small delay to show the loading state (for demo purposes)
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
         await fetchResources();
         renderResources();
         setupEventListeners();
     } catch (error) {
         console.error('Error initializing resources:', error);
         showError('Failed to load resources. Please try again later.');
+    }
+}
+
+// Show skeleton loaders while content is loading
+function showSkeletonLoaders(container, count) {
+    container.innerHTML = '';
+    
+    for (let i = 0; i < count; i++) {
+        const loader = document.createElement('div');
+        loader.className = 'resource-card skeleton-loader';
+        loader.innerHTML = `
+            <div class="skeleton-thumbnail"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text skeleton-text--half"></div>
+            <div class="skeleton-text skeleton-text--quarter"></div>
+        `;
+        container.appendChild(loader);
     }
 }
 
@@ -213,6 +236,20 @@ function renderResources() {
     
     // Clear the grid
     resourcesGrid.innerHTML = '';
+    
+    // Show skeleton loaders while loading
+    if (resources.length === 0) {
+        const loader = document.createElement('div');
+        loader.className = 'loader';
+        loader.innerHTML = `
+            <div class="skeleton-thumbnail"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text skeleton-text--half"></div>
+            <div class="skeleton-text skeleton-text--quarter"></div>
+        `;
+        resourcesGrid.appendChild(loader);
+        return;
+    }
     
     // Show message if no resources found
     if (filteredResources.length === 0) {
