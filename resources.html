@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Resources | Interactive Lessons</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/resources.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1>Learning Resources</h1>
+                <p class="subtitle">Curated collection of educational videos and materials</p>
+            </div>
+        </header>
+
+        <main class="resources-container">
+            <div class="filters-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search resources...">
+                </div>
+                <div class="filter-tags" id="filterTags">
+                    <!-- Tags will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <div class="resources-grid" id="resourcesGrid">
+                <!-- Resources will be dynamically inserted here -->
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Loading resources...</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>© 2025 Interactive Lessons. All resources are property of their respective owners.</p>
+        </footer>
+    </div>
+
+    <script src="js/resources.js" type="module"></script>
+</body>
+</html>
