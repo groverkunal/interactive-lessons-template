@@ -93,28 +93,54 @@ async function fetchResources() {
 
 // Get YouTube thumbnail URL from video URL
 function getYouTubeThumbnail(url) {
-    if (!url) return '';
+    if (!url) return 'https://via.placeholder.com/800x450?text=No+Thumbnail';
     
     try {
-        const urlObj = new URL(url);
+        // Handle URLs that might be missing protocol
+        let urlStr = url.trim();
+        if (!/^https?:\/\//i.test(urlStr)) {
+            urlStr = 'https://' + urlStr;
+        }
+        
+        const urlObj = new URL(urlStr);
+        
+        // Handle YouTube URLs
         if (urlObj.hostname.includes('youtube.com') || urlObj.hostname.includes('youtu.be')) {
-            let videoId;
+            let videoId = '';
             
+            // Handle youtu.be links
             if (urlObj.hostname.includes('youtu.be')) {
-                videoId = urlObj.pathname.slice(1);
-            } else {
+                videoId = urlObj.pathname.split('/')[1];
+            } 
+            // Handle YouTube watch links
+            else if (urlObj.pathname.includes('/watch')) {
                 videoId = new URLSearchParams(urlObj.search).get('v');
             }
+            // Handle YouTube embed links
+            else if (urlObj.pathname.startsWith('/embed/')) {
+                videoId = urlObj.pathname.split('/')[2];
+            }
             
+            // Clean up video ID (remove any query parameters or fragments)
             if (videoId) {
+                videoId = videoId.split(/[?#]/)[0];
+                // Try different thumbnail qualities, fallback to lower quality if needed
                 return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            }
+        }
+        // Handle Vimeo URLs
+        else if (urlObj.hostname.includes('vimeo.com')) {
+            const videoId = urlObj.pathname.split('/').filter(Boolean).pop();
+            if (videoId) {
+                return `https://vumbnail.com/${videoId}.jpg`;
             }
         }
     } catch (e) {
         console.error('Error parsing URL:', e);
     }
     
-    return '';
+    // Fallback to a placeholder if we couldn't generate a thumbnail
+    return 'https://via.placeholder.com/800x450?text=No+Thumbnail';
 }
 
 // Render filter tags
