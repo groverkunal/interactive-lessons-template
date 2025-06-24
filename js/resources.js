@@ -32,17 +32,50 @@ async function fetchResources() {
         
         const data = await response.json();
         
+        // Log the first item to debug the structure
+        console.log('First item from Notion:', data[0]);
+        
         // Process and filter the data
         resources = data
-            .filter(item => item.URL && item.Title) // Only include items with URL and Title
-            .map(item => ({
-                id: item.id,
-                title: item.Title[0]?.[0] || 'Untitled',
-                url: item.URL,
-                description: item.Description?.[0]?.[0] || 'No description available',
-                tags: item.Tags || [],
-                thumbnail: getYouTubeThumbnail(item.URL)
-            }));
+            .filter(item => {
+                // Check if item has URL and Title properties
+                const hasURL = item.URL && (typeof item.URL === 'string' || item.URL[0]?.[0]);
+                const hasTitle = item.Title && (typeof item.Title === 'string' || item.Title[0]?.[0]);
+                return hasURL && hasTitle;
+            })
+            .map(item => {
+                // Handle different possible title formats
+                let title = 'Untitled';
+                if (typeof item.Title === 'string') {
+                    title = item.Title;
+                } else if (Array.isArray(item.Title) && item.Title[0]?.[0]) {
+                    title = item.Title[0][0];
+                } else if (item.Title) {
+                    title = String(item.Title);
+                }
+                
+                // Handle URL
+                const url = typeof item.URL === 'string' ? item.URL : (item.URL?.[0]?.[0] || '');
+                
+                // Handle description
+                let description = 'No description available';
+                if (item.Description) {
+                    if (typeof item.Description === 'string') {
+                        description = item.Description;
+                    } else if (Array.isArray(item.Description) && item.Description[0]?.[0]) {
+                        description = item.Description[0][0];
+                    }
+                }
+                
+                return {
+                    id: item.id,
+                    title: title.trim(),
+                    url: url.trim(),
+                    description: description.trim(),
+                    tags: Array.isArray(item.Tags) ? item.Tags : [],
+                    thumbnail: getYouTubeThumbnail(url)
+                };
+            });
         
         // Extract all unique tags
         resources.forEach(resource => {

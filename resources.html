@@ -43,35 +43,27 @@
     </header>
 
     <main class="main-content">
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="animate-fade-up">Learning Resources</h1>
-                    <p class="animate-fade-up" style="--delay: 0.2s">Curated collection of educational videos and materials</p>
-                </div>
-            </div>
-        </section>
-
-        <main class="resources-container">
+        <div class="container">
+            <h1 class="page-title">Learning Resources</h1>
+            <p class="page-subtitle">Curated collection of educational videos and materials</p>
+            
             <div class="filters-container">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" id="searchInput" placeholder="Search resources...">
                 </div>
                 <div class="filter-tags" id="filterTags">
-                    <!-- Tags will be dynamically inserted here -->
+                    <!-- Tags will be dynamically added here -->
                 </div>
             </div>
-
             <div class="resources-grid" id="resourcesGrid">
-                <!-- Resources will be dynamically inserted here -->
+                <!-- Resources will be dynamically added here -->
                 <div class="loading-spinner">
                     <div class="spinner"></div>
                     <p>Loading resources...</p>
                 </div>
             </div>
-        </main>
-
+        </div>
     </main>
 
     <footer class="footer">
